@@ -2,10 +2,10 @@ import React from "react";
 import { css } from "@emotion/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faArrowLeft,
-  faArrowUp,
-  faArrowDown,
-  faArrowRight,
+  faCaretRight,
+  faCaretLeft,
+  faCaretUp,
+  faCaretDown,
 } from "@fortawesome/free-solid-svg-icons";
 import { Direction } from "../constants";
 type Props = {
@@ -18,59 +18,71 @@ const ManipulationPanel: React.VFC<Props> = ({ onChange }) => {
   const onDown = (): void => onChange(Direction.down);
   return (
     <div css={manipulationPanel}>
-      <button css={[manipulationBtn, btnLeft]} onClick={onLeft}>
-        <FontAwesomeIcon icon={faArrowLeft} />
+      <button css={[manipulationBtn, btnUp]} onClick={onUp}>
+        <FontAwesomeIcon icon={faCaretUp} />
       </button>
-      <div>
-        <button css={[manipulationBtn, btnUp]} onClick={onUp}>
-          <FontAwesomeIcon icon={faArrowUp} />
-        </button>
-        <button css={[manipulationBtn, btnDown]} onClick={onDown}>
-          <FontAwesomeIcon icon={faArrowDown} />
-        </button>
-      </div>
+      <button css={[manipulationBtn, btnLeft]} onClick={onLeft}>
+        <FontAwesomeIcon icon={faCaretLeft} />
+      </button>
+      <div css={[manipulationBtn, btnSpace]}></div>
       <button css={[manipulationBtn, btnRight]} onClick={onRight}>
-        <FontAwesomeIcon icon={faArrowRight} />
+        <FontAwesomeIcon icon={faCaretRight} />
+      </button>
+      <button css={[manipulationBtn, btnDown]} onClick={onDown}>
+        <FontAwesomeIcon icon={faCaretDown} />
       </button>
     </div>
   );
 };
 const manipulationPanel = css`
-  margin-top: 2px;
-  display: flex;
+  display: grid;
   justify-content: center;
+  grid-template-areas:
+    ". up ."
+    "left space right"
+    ". down .";
+  position: absolute;
+  top: 60px;
+  left: 20px;
 `;
 const manipulationBtn = css`
   border: 0;
   cursor: pointer;
-  color: white;
-  border-radius: 4px;
+  color: #fff;
   font-weight: bold;
-  padding: 8px 16px;
-  font-size: 1rem;
+  font-size: 14px;
+  font-size: 1.4rem;
   text-transform: uppercase;
   transition: all ease 0.2s;
-  min-width: 106px;
-  margin: 4px 2px;
   background: #52b4e8;
-  box-shadow: 0px 4px 1px 1px #4293c4, 0px 6px 1px 1px #21507b;
-  width: 100%;
-`;
-const btnLeft = css`
-  min-width: 106px;
-  width: 106px;
-  margin-left: 0;
-`;
-const btnRight = css`
-  min-width: 106px;
-  width: 106px;
-  margin-right: 0;
+  width: 8.125vw;
+  height: 7.725vw;
+  box-shadow: 4px 4px 0px 0px #4293c4, 6px 6px 0px 0px #21507b;
+  @media (min-width: 540px) {
+    width: 60px;
+    height: 55px;
+    font-size: 20px;
+    font-size: 2rem;
+  }
 `;
 const btnUp = css`
-  margin-left: 0px;
-  margin-right: 0px;
+  grid-area: up;
+  border-radius: 4px 4px 0 0;
 `;
 const btnDown = css`
-  ${btnUp}
+  grid-area: down;
+  border-radius: 0 0 4px 4px;
+`;
+const btnSpace = `
+  grid-area: space;
+  border-radius:0px;
+`;
+const btnLeft = css`
+  grid-area: left;
+  border-radius: 4px 0 0 4px;
+`;
+const btnRight = css`
+  grid-area: right;
+  border-radius: 0 4px 4px 0;
 `;
 export default ManipulationPanel;
