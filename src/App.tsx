@@ -1,5 +1,5 @@
-import React, { Dispatch, SetStateAction, createContext } from "react";
-import { Global, css, ThemeProvider, Theme } from "@emotion/react";
+import React from "react";
+import { Global, css, ThemeProvider } from "@emotion/react";
 import emotionReset from "emotion-reset";
 import { theme } from "./themes/theme";
 import Field from "./components/Field";
@@ -7,10 +7,6 @@ import Button from "./components/Button";
 import ManipulationPanel from "./components/ManipulationPanel";
 import Navigation from "./components/Navigation";
 import useSnakeGame from "./hooks/useSnakeGame";
-export const CustomThemeContext = createContext<{
-  setTheme: Dispatch<SetStateAction<Theme>>;
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-}>({ setTheme: () => {} });
 function App() {
   const {
     body,
@@ -24,7 +20,6 @@ function App() {
     updateDirection,
     updateDifficulty,
   } = useSnakeGame();
-  // const [theme, setTheme] = useState<Theme>(advance);
   return (
     <>
       <Global styles={[global]} />
@@ -41,7 +36,7 @@ function App() {
                 onChangeDifficulty={updateDifficulty}
               />
             </header>
-            <main css={main}>
+            <main>
               <Field fields={fields} status={status} />
             </main>
           </div>
@@ -59,9 +54,6 @@ function App() {
             />
           </footer>
         </div>
-        {/* <CustomThemeContext.Provider value={{ setTheme }}>
-          <div>aaa</div>
-        </CustomThemeContext.Provider> */}
       </ThemeProvider>
     </>
   );
@@ -103,7 +95,7 @@ const container = css`
   padding: 40px 20px;
   background: ${theme.colors.boardColor};
   min-height: 100vh;
-  @media (min-width: 540px) {
+  ${theme.mq} {
     padding: 40px 60px;
     min-height: inherit;
   }
@@ -113,7 +105,7 @@ const panelDisplay = css`
   margin: 0 auto;
   padding: 10px 20px 20px;
   border-radius: 30px 10px;
-  @media (min-width: 540px) {
+  ${theme.mq} {
     padding: 20px 40px 40px;
     max-width: 640px;
   }
@@ -161,7 +153,7 @@ const title = css`
     z-index: 3;
     white-space: nowrap;
   }
-  @media (min-width: 540px) {
+  ${theme.mq} {
     font-size: 18px;
     font-size: 1.8rem;
     &::before {
@@ -176,11 +168,9 @@ const title = css`
     }
   }
 `;
-const main = css``;
-
 const footer = css`
   position: relative;
-  @media (min-width: 540px) {
+  ${theme.mq} {
     height: 300px;
     max-width: 640px;
     margin: 0 auto;

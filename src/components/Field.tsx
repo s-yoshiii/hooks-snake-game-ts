@@ -56,7 +56,7 @@ const dots = css`
   width: calc(100% / 35);
   height: calc((100vw - 82px) / 35);
   background: ${theme.colors.fieldColor};
-  @media (min-width: 540px) {
+  ${theme.mq} {
     height: calc((100vw - 210px) / 35);
     max-height: calc(558px / 35);
     max-width: calc(560px / 35);

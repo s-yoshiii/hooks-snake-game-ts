@@ -1,7 +1,7 @@
 import React from "react";
 import { css } from "@emotion/react";
 import { GameStatus } from "../constants";
-import { theme, mq } from "../themes/theme";
+import { theme } from "../themes/theme";
 type Props = {
   onStart: () => void;
   onRestart: () => void;
@@ -73,7 +73,7 @@ const btn = css`
   &:active {
     transform: translate(3px, 3px);
   }
-  ${mq} {
+  ${theme.mq} {
     width: 90px;
     height: 90px;
     font-size: 22px;
@@ -117,7 +117,7 @@ const btnText = css`
   font-size: 1.2rem;
   letter-spacing: 0.08em;
   font-weight: 400;
-  ${mq} {
+  ${theme.mq} {
     font-size: 14px;
     font-size: 1.4rem;
     margin-top: 15px;

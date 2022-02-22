@@ -2,6 +2,7 @@ import "@emotion/react";
 declare module "@emotion/react" {
   interface Theme {
     colors: Colors;
+    mq: string;
   }
 }
 interface Colors {
@@ -18,6 +19,8 @@ interface Colors {
   manipulationShadow01: string;
   manipulationShadow02: string;
   navigationColor: string;
+  navigationShadow01: string;
+  navigationShadow02: string;
   fieldColor: string;
   stateDisplayFontColor: string;
 }

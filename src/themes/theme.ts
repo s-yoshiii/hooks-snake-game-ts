@@ -13,8 +13,10 @@ export const theme = {
     manipulationShadow01: "#757575",
     manipulationShadow02: "#292827",
     navigationColor: "#020705",
+    navigationShadow01: "#020604",
+    navigationShadow02: "#010403",
     fieldColor: "#0f1d1d",
     stateDisplayFontColor: "#f7c30e",
   },
+  mq: "@media (min-width: 540px)",
 };
-export const mq = "@media (min-width: 540px)";

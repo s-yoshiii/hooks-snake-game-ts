@@ -1,6 +1,7 @@
 import React from "react";
 import { css } from "@emotion/react";
 import { defaultDifficulty, Difficulty } from "../constants";
+import { theme } from "../themes/theme";
 type Props = {
   length: number;
   difficulty: number;
@@ -52,12 +53,13 @@ const navigation = css`
   justify-content: center;
   color: #fff;
   font-weight: bold;
-  background: #020705;
-  box-shadow: 0px 4px 1px 1px #020604, 0px 6px 1px 1px #010403;
+  background: ${theme.colors.navigationColor};
+  box-shadow: 0px 4px 1px 1px ${theme.colors.navigationShadow01},
+    0px 6px 1px 1px ${theme.colors.navigationShadow02};
   border: 1px solid #ffffff;
   font-size: 12px;
   font-size: 1.2rem;
-  @media (min-width: 540px) {
+  ${theme.mq} {
     font-size: 18px;
     font-size: 1.8rem;
   }
@@ -68,7 +70,7 @@ const navigationItem = css`
   align-items: center;
   justify-content: center;
   width: 50%;
-  @media (min-width: 540px) {
+  ${theme.mq} {
     padding: 15px;
   }
 `;

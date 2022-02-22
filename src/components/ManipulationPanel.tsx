@@ -8,7 +8,7 @@ import {
   faCaretDown,
 } from "@fortawesome/free-solid-svg-icons";
 import { Direction, OppositeDirection, GameStatus } from "../constants";
-import { theme, mq } from "../themes/theme";
+import { theme } from "../themes/theme";
 type Props = {
   onChange: (newDirection: string) => void;
   direction: string;
@@ -107,7 +107,7 @@ const manipulationBtn = css`
   outline: 0;
   box-shadow: 4px 4px 0px 0px ${theme.colors.manipulationShadow01},
     6px 6px 0px 0px ${theme.colors.manipulationShadow02};
-  ${mq} {
+  ${theme.mq} {
     width: 60px;
     height: 55px;
     font-size: 20px;
