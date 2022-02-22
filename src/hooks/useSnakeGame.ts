@@ -85,7 +85,7 @@ const useSnakeGame = () => {
       }
       setDifficulty(difficulty);
     },
-    [status, difficulty]
+    [status]
   );
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent): void => {
