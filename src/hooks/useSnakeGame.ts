@@ -134,6 +134,7 @@ const useSnakeGame = () => {
     start,
     stop,
     reload,
+    direction,
     updateDirection,
     updateDifficulty,
   };

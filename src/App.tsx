@@ -1,12 +1,16 @@
-import React from "react";
-import { Global, css, ThemeProvider } from "@emotion/react";
+import React, { Dispatch, SetStateAction, createContext } from "react";
+import { Global, css, ThemeProvider, Theme } from "@emotion/react";
 import emotionReset from "emotion-reset";
-import { dark } from "./themes/theme";
+import { theme } from "./themes/theme";
 import Field from "./components/Field";
 import Button from "./components/Button";
 import ManipulationPanel from "./components/ManipulationPanel";
 import Navigation from "./components/Navigation";
 import useSnakeGame from "./hooks/useSnakeGame";
+export const CustomThemeContext = createContext<{
+  setTheme: Dispatch<SetStateAction<Theme>>;
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+}>({ setTheme: () => {} });
 function App() {
   const {
     body,
@@ -16,13 +20,15 @@ function App() {
     start,
     stop,
     reload,
+    direction,
     updateDirection,
     updateDifficulty,
   } = useSnakeGame();
+  // const [theme, setTheme] = useState<Theme>(advance);
   return (
     <>
       <Global styles={[global]} />
-      <ThemeProvider theme={dark}>
+      <ThemeProvider theme={theme}>
         <div css={container}>
           <div css={panelDisplay}>
             <h1 css={title}>
@@ -36,7 +42,7 @@ function App() {
               />
             </header>
             <main css={main}>
-              <Field fields={fields} />
+              <Field fields={fields} status={status} />
             </main>
           </div>
           <footer css={footer}>
@@ -46,11 +52,16 @@ function App() {
               onStop={stop}
               onRestart={reload}
             />
-            <ManipulationPanel onChange={updateDirection} />
+            <ManipulationPanel
+              status={status}
+              onChange={updateDirection}
+              direction={direction}
+            />
           </footer>
         </div>
         {/* <CustomThemeContext.Provider value={{ setTheme }}>
-      </CustomThemeContext.Provider> */}
+          <div>aaa</div>
+        </CustomThemeContext.Provider> */}
       </ThemeProvider>
     </>
   );
@@ -88,9 +99,9 @@ const container = css`
   text-align: center;
   width: 100%;
   min-width: 320px;
-  max-width: 960px;
+  max-width: 760px;
   padding: 40px 20px;
-  background: #eeeeee;
+  background: ${theme.colors.boardColor};
   min-height: 100vh;
   @media (min-width: 540px) {
     padding: 40px 60px;
@@ -98,7 +109,7 @@ const container = css`
   }
 `;
 const panelDisplay = css`
-  background: #8b8890;
+  background: ${theme.colors.panelDisplayColor};
   margin: 0 auto;
   padding: 10px 20px 20px;
   border-radius: 30px 10px;

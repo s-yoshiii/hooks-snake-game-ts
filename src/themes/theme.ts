@@ -1,12 +1,20 @@
-export const dark = {
+export const theme = {
   colors: {
-    boardColor: "#0f1d1d",
-    buttonInitColor: "#23ce6b",
-    buttonPlayingColor: "#ffd166",
-    buttonGameOverColor: "#ef476f",
-    manipulationColor: "#52b4e8",
+    boardColor: "#eeeeee",
+    panelDisplayColor: "#8b8890",
+    buttonRightColor: "#c26496",
+    buttonRightShadow01: "#824465",
+    buttonRightShadow02: "#422233",
+    buttonLeftColor: "#545598",
+    buttonLeftShadow01: "#313259",
+    buttonLeftShadow02: "#464780",
+    disableFontColor: "#999",
+    manipulationColor: "#28282A",
+    manipulationShadow01: "#757575",
+    manipulationShadow02: "#292827",
     navigationColor: "#020705",
+    fieldColor: "#0f1d1d",
+    stateDisplayFontColor: "#f7c30e",
   },
 };
-
-export const mq = "540pxx";
+export const mq = "@media (min-width: 540px)";
