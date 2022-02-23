@@ -91,7 +91,7 @@ const container = css`
   text-align: center;
   width: 100%;
   min-width: 320px;
-  max-width: 760px;
+  max-width: 960px;
   padding: 40px 20px;
   background: ${theme.colors.boardColor};
   min-height: 100vh;
